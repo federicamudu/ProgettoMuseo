@@ -29,6 +29,13 @@
                 <h6>
                     Descrizione: {{$opera->description}}
                 </h6>
+                <h6>
+                    @foreach ($museums as $museum)
+                        @if ($museum->id==$opera->museum_id)
+                            Museo d'appartenenza: {{$museum->name}}
+                        @endif
+                    @endforeach
+                </h6>
             </div>
         </div>
         @auth

@@ -36,6 +36,17 @@
                         @enderror
                     </div>
                     <div class="mb-3">
+                        <label for="museum_id" class="form-label">Museo dove si trova</label>
+                        <select name="museum_id" class="form-control @error('museum') is-invalid @enderror">
+                            @foreach ($museums as $museum)
+                                <option value="{{$museum->id}}">{{$museum->name}}</option>
+                            @endforeach
+                        </select>
+                        @error('museum')
+                        <div class="text-danger fst-italic">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
                         <label for="year" class="form-label">Anno</label>
                         <input value="{{old('year')}}" type="text" name="year" class="form-control @error('year') is-invalid @enderror">
                         @error('year')

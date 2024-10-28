@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MuseumController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OperaController;
 use App\Http\Controllers\PublicController;
@@ -25,3 +26,12 @@ Route::get('/operas/repert', [OperaController::class,'showByCategoryRepert'])->n
 //route contattaci
 Route::get('/contact-us', [ContactUsController::class,'index'])->name('contactUs.index');
 Route::post('/contact-us/thank-you', [ContactUsController::class,'contactUsSubmit'])->name('contactUs.submit');
+
+//route museum
+Route::get('/museum', [MuseumController::class,'index'])->name('museum.index');
+Route::get('/museum/create', [MuseumController::class,'create'])->name('museum.create');
+Route::post('/museum/store', [MuseumController::class,'store'])->name('museum.store');
+Route::get('/museum/detail/{museum}', [MuseumController::class,'show'])->name('museum.show');
+Route::get('/museum/edit/{museum}', [MuseumController::class,'edit'])->name('museum.edit');
+Route::put('/museum/update/{museum}', [MuseumController::class,'update'])->name('museum.update');
+Route::delete('/museum/delete/{museum}', [MuseumController::class,'destroy'])->name('museum.delete');

@@ -29,6 +29,14 @@
                         <input value="{{$opera->author}}" type="text" name="author" class="form-control">
                     </div>
                     <div class="mb-3">
+                        <label for="museum_id" class="form-label">Museo dove si trova</label>
+                        <select name="museum_id" class="form-control">
+                            @foreach ($museums as $museum)
+                                <option value="{{$museum->id}}">{{$museum->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="year" class="form-label">Anno di pubblicazione</label>
                         <input value="{{$opera->year}}" type="text" name="year" class="form-control" placeholder="{{$opera->year}}">
                     </div>

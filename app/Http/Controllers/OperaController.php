@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Opera;
+use App\Models\Museum;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\Middleware;
 
 class OperaController extends Controller
 {
+    public static function middleware()
+    {
+        return [
+            new Middleware('auth', except: ['index', 'show'])
+        ];
+    }
     /**
      * Display a listing of the resource.
      */
@@ -21,7 +29,8 @@ class OperaController extends Controller
      */
     public function create()
     {
-        return view("opera.create");
+        $museums=Museum::all();
+        return view("opera.create", compact("museums"));
     }
 
     /**
@@ -29,6 +38,7 @@ class OperaController extends Controller
      */
     public function store(Request $request)
     {
+        
         Opera::create([
             "name"=> $request->name,
             "author"=>$request->author,
@@ -37,6 +47,7 @@ class OperaController extends Controller
             "category"=>$request->category,
             "period"=>$request->period,
             "pic"=>$request->has('pic') ? $request->file('pic')->store('pics', 'public') : NULL,
+            "museum_id"=>$request->museum_id
         ]);
         return redirect()->route('opera.create')->with('success','Opera aggiunta correttamente!');
     }
@@ -44,9 +55,10 @@ class OperaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Opera $opera)
+    public function show(Opera $opera, Museum $museum)
     {
-        return view('opera.show', compact('opera'));
+        $museums=Museum::all();
+        return view('opera.show', compact('opera', 'museums'));
     }
 
     /**
@@ -54,7 +66,8 @@ class OperaController extends Controller
      */
     public function edit(Opera $opera)
     {
-        return view('opera.edit', compact('opera'));
+        $museums=Museum::all();
+        return view('opera.edit', compact('opera', 'museums'));
     }
 
     /**
@@ -73,7 +86,8 @@ class OperaController extends Controller
             'year'=>$request->year,
             'description'=>$request->description,
             'category'=>$request->category,
-            'period'=>$request->period
+            'period'=>$request->period,
+            "museum_id"=>$request->museum_id
         ]);
         return redirect()->route('opera.edit', compact('opera'))->with('success','Opera aggiornata con successo!');
     }

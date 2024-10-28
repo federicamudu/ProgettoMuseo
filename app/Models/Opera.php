@@ -15,6 +15,11 @@ class Opera extends Model
         'description',
         'category',
         'period',
-        'pic'
+        'pic',
+        'museum_id',
     ];
+    
+    public function museum(){
+        return $this->belongsTo(Museum::class);
+    }
 }

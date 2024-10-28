@@ -18,6 +18,9 @@
                     </ul>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{route('museum.index')}}">Musei</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{route('contactUs.index')}}">Contattaci</a>
                 </li>
                 @guest
