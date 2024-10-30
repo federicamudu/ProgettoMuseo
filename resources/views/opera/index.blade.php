@@ -19,7 +19,7 @@
 
             <div class="col-12 col-md-4 d-flex justify-content-center">
                 <div class="card mb-4 shadow" style="width: 17rem;">
-                    <img src="{{ Storage::url($opera->pic) }}" class="card-img-top" alt="">
+                    <img src="{{ Storage::url($opera->pic) }}" class="card-img-top imgDetailCard" alt="">
                     <div class="card-body">
                         <h5 class="card-title text-truncate"> {{ $opera->name }} </h5>
                         <p class="card-text"> {{ $opera->author }} </p>
